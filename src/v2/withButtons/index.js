@@ -13,24 +13,13 @@ const withButtons = ({ inColumns = [], inData = [], inOptions = {}, columns, dat
     });
 
     const buttonBar = structuredClone(spec.buttonBar);
-    if (localOptions?.buttons && Array.isArray(localOptions.buttons)) {
-        buttonBar.children = localOptions.buttons.map((b, idx) => ({
-            tagName: "button",
-            textContent: b.text ?? b.label ?? "Action",
-            attributes: {
-                type: b.type ?? "button",
-                class: b.class ?? (idx === 0 ? "btn btn-primary" : "btn btn-secondary"),
-                id: b.id ?? `btn-${idx}`
-            }
-        }));
-    } else {
-        if (localOptions?.submitLabel) buttonBar.children[0].textContent = localOptions.submitLabel;
-        if (localOptions?.cancelLabel) buttonBar.children[1].textContent = localOptions.cancelLabel;
-    }
+    if (localOptions.submitLabel) buttonBar.children[0].textContent = localOptions.submitLabel;
+    if (localOptions.cancelLabel) buttonBar.children[1].textContent = localOptions.cancelLabel;
 
     form.children.push(buttonBar);
     return form;
 };
+
 
 export { spec, withButtons };
 export default withButtons;
