@@ -1,4 +1,4 @@
-import guardFunc from "json-renderers-guard";
+import { guardSpec } from "json-renderers-guard";
 import registerGlobal from "./register/index.js";
 import stacked, { renderStackedField } from "./stacked/index.js";
 import inline, { renderInlineField } from "./inline/index.js";
@@ -28,13 +28,11 @@ const render = ({
     const localData = inData ?? data;
     const localOptions = inOptions ?? options;
 
-    guardFunc({
-        inConfig: {
-            type: "form",
-            columns: localColumns,
-            data: localData,
-            options: localOptions
-        }
+    guardSpec({
+        type: "form",
+        columns: localColumns,
+        data: localData,
+        options: localOptions
     });
 
     const builder = FORM_MAP[localType] || stacked;

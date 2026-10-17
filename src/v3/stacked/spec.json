@@ -1,0 +1,44 @@
+{
+  "form": {
+    "tagName": "form",
+    "attributes": {
+      "class": "vstack gap-3",
+      "id": "appFormId"
+    },
+    "children": []
+  },
+  "fieldWrapper": {
+    "tagName": "div",
+    "attributes": {
+      "class": "mb-3"
+    },
+    "children": []
+  },
+  "label": {
+    "tagName": "label",
+    "textContent": "Label",
+    "attributes": {
+      "class": "form-label fw-semibold",
+      "for": "fieldId"
+    }
+  },
+  "input": {
+    "tagName": "input",
+    "attributes": {
+      "type": "text",
+      "placeholder": "",
+      "class": "form-control",
+      "id": "fieldId",
+      "name": "fieldName"
+    }
+  },
+  "submitButton": {
+    "tagName": "button",
+    "textContent": "Submit",
+    "attributes": {
+      "type": "submit",
+      "class": "btn btn-primary align-self-start",
+      "id": "formSubmitBtnId"
+    }
+  }
+}
