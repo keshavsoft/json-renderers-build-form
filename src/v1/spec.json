@@ -1,0 +1,102 @@
+{
+  "form": {
+    "tagName": "form",
+    "attributes": {
+      "class": "vstack gap-3",
+      "id": "appFormId"
+    },
+    "children": []
+  },
+  "submitButton": {
+    "tagName": "button",
+    "textContent": "Save",
+    "attributes": {
+      "type": "submit",
+      "class": "btn btn-primary align-self-start",
+      "id": "formSubmitBtnId"
+    }
+  },
+  "textareaRow": {
+    "tagName": "div",
+    "attributes": {
+      "class": "mb-3"
+    },
+    "children": [
+      {
+        "tagName": "label",
+        "textContent": "Notes",
+        "attributes": {
+          "class": "form-label fw-semibold",
+          "for": "fieldId"
+        }
+      },
+      {
+        "tagName": "textarea",
+        "attributes": {
+          "class": "form-control",
+          "rows": "3",
+          "id": "fieldId",
+          "name": "fieldName"
+        }
+      }
+    ]
+  },
+  "selectRow": {
+    "tagName": "div",
+    "attributes": {
+      "class": "mb-3"
+    },
+    "children": [
+      {
+        "tagName": "label",
+        "textContent": "Select",
+        "attributes": {
+          "class": "form-label fw-semibold",
+          "for": "fieldId"
+        }
+      },
+      {
+        "tagName": "select",
+        "attributes": {
+          "class": "form-select",
+          "id": "fieldId",
+          "name": "fieldName"
+        },
+        "children": []
+      }
+    ]
+  },
+  "checkboxRow": {
+    "tagName": "div",
+    "attributes": {
+      "class": "form-check mb-3"
+    },
+    "children": [
+      {
+        "tagName": "input",
+        "attributes": {
+          "type": "checkbox",
+          "class": "form-check-input",
+          "id": "fieldId",
+          "name": "fieldName",
+          "value": "true"
+        }
+      },
+      {
+        "tagName": "label",
+        "textContent": "Agree",
+        "attributes": {
+          "class": "form-check-label",
+          "for": "fieldId"
+        }
+      }
+    ]
+  },
+  "option": {
+    "tagName": "option",
+    "textContent": "${rowValue}",
+    "attributes": {
+      "value": "${rowValue}"
+    }
+  }
+}

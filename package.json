@@ -1,0 +1,37 @@
+{
+  "name": "json-renderers-build-form",
+  "version": "1.1.0",
+  "description": "Focused form specification builder for json-renderers, assembling form fields, rows, and action bars into JSON-to-DOM specs",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "src",
+    "docs",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node test/test.js",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [
+    "json-renderers",
+    "json-to-dom",
+    "form",
+    "form-builder",
+    "input-row",
+    "headless",
+    "spec-builder"
+  ],
+  "author": "KeshavSoft",
+  "license": "MIT",
+  "dependencies": {
+    "json-renderers-build-input-row": "file:../json-renderers-build-input-row"
+  },
+  "devDependencies": {
+    "vite": "^5.4.2"
+  }
+}
