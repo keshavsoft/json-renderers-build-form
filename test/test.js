@@ -70,4 +70,39 @@ if (couponRow.children[2].textContent !== "Apply") {
 }
 console.log("Test 2 Passed!");
 
-console.log("\n All json-renderers-build-form tests PASSED successfully!");
+// Test 3: Inline Form
+console.log("\n3. Testing 'inline' Form flavour...");
+const formSpec3 = render({
+    type: "inline",
+    columns: columns1,
+    data: data1
+});
+console.log("Inline Form Spec children count:", formSpec3.children.length);
+if (formSpec3.tagName !== "form" || formSpec3.children.length !== 6) {
+    throw new Error("Test 3 Failed: Expected inline form with 6 children");
+}
+console.log("Test 3 Passed!");
+
+// Test 4: Form withButtons
+console.log("\n4. Testing 'withButtons' Form flavour...");
+const formSpec4 = render({
+    type: "withButtons",
+    columns: columns1,
+    data: data1,
+    options: {
+        submitLabel: "Save All",
+        cancelLabel: "Discard"
+    }
+});
+const lastChild = formSpec4.children[formSpec4.children.length - 1];
+console.log("Last child (button bar):", lastChild);
+if (!lastChild || lastChild.tagName !== "div" || lastChild.children?.length !== 2) {
+    throw new Error("Test 4 Failed: Expected button bar with 2 buttons");
+}
+if (lastChild.children[0].textContent !== "Save All" || lastChild.children[1].textContent !== "Discard") {
+    throw new Error("Test 4 Failed: Expected button text 'Save All' and 'Discard'");
+}
+console.log("Test 4 Passed!");
+
+console.log("\n All json-renderers-build-form tests (stacked, inline, withButtons) PASSED successfully!");
+

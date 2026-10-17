@@ -1,6 +1,6 @@
 {
   "name": "json-renderers-build-form",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "description": "Focused form specification builder for json-renderers, assembling form fields, rows, and action bars into JSON-to-DOM specs",
   "type": "module",
   "main": "src/index.js",
