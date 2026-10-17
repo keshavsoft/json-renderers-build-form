@@ -1,109 +1,110 @@
-const v = {
-  type: "table",
-  data: [],
-  columns: [],
-  options: {},
+const j = ({ inConfig: n, inValue: s } = {}) => {
+  const e = n, t = e ? e.type : s;
+  if (t === void 0)
+    throw new Error('Missing compulsory key: "type"');
+  if (typeof t != "string")
+    throw new TypeError("type must be a string");
+  return !0;
+}, R = ({ inConfig: n, inValue: s } = {}) => {
+  const e = n, t = e ? e.targetHtmlId : s;
+  if (t === void 0)
+    throw new Error('Missing compulsory key: "targetHtmlId"');
+  if (typeof t != "string")
+    throw new TypeError("targetHtmlId must be a string");
+  if (t.trim().length === 0)
+    throw new Error("targetHtmlId must be a non-empty string");
+  return !0;
+}, F = ({ inConfig: n, inValue: s } = {}) => {
+  const e = n, t = e ? e.data : s;
+  if (t === void 0)
+    throw new Error('Missing compulsory key: "data"');
+  if (!Array.isArray(t))
+    throw new TypeError("data must be an Array");
+  return !0;
+}, M = ({ inConfig: n, inValue: s } = {}) => {
+  const e = n, t = e ? e.columns : s;
+  if (t === void 0)
+    throw new Error('Missing compulsory key: "columns"');
+  if (!Array.isArray(t))
+    throw new TypeError("columns must be an Array");
+  return !0;
+}, P = ({ inConfig: n, inValue: s } = {}) => {
+  const e = n, t = e ? e.classToApply : s;
+  if (t === void 0)
+    throw new Error('Missing compulsory key: "classToApply"');
+  if (typeof t != "string")
+    throw new TypeError("classToApply must be a string");
+  return !0;
+}, H = ({ inConfig: n, inValue: s } = {}) => {
+  const e = n, t = e ? e.appendPosition : s;
+  if (t === void 0)
+    throw new Error('Missing compulsory key: "appendPosition"');
+  if (typeof t != "string")
+    throw new TypeError("appendPosition must be a string");
+  return !0;
+}, W = ({ inConfig: n, inValue: s } = {}) => {
+  const e = n, t = e ? e.showLog : s;
+  if (t === void 0)
+    throw new Error('Missing compulsory key: "showLog"');
+  if (typeof t != "boolean")
+    throw new TypeError("showLog must be a boolean");
+  return !0;
+}, D = "table", _ = "", G = [], z = [], K = "", V = "replace";
+const g = {
+  type: D,
+  targetHtmlId: _,
+  data: G,
+  columns: z,
+  classToApply: K,
+  appendPosition: V,
   showLog: !1
-}, E = {
-  type: "table",
-  targetHtmlId: "",
-  data: [],
-  columns: [],
-  classToApply: "",
-  appendPosition: "replace",
-  showLog: !1
-}, R = {
-  rendererBuildV19: v,
-  rendererV17: E
-}, S = ["table", "tableFromSpec", "select", "selectOptionsOnly", "dataList", "datalist", "searchInput", "search", "inputRow", "form"], F = ["table", "tableFromSpec"];
-function V({ inConfig: i, contractName: a = "rendererBuildV19" } = {}) {
-  const e = i, t = a, c = R[t];
-  if (!c)
-    throw new Error(`Unknown guard contract: ${t}`);
+}, L = ({ inKey: n } = {}) => {
+  const s = n;
+  return s && s in g ? g[s] : { ...g };
+};
+Object.assign(L, g);
+const T = ({ inConfig: n, config: s } = {}) => {
+  const e = n ?? s;
   if (!e || typeof e != "object" || Array.isArray(e))
     throw new TypeError("Config must be an object");
-  if (t === "rendererV17") {
-    for (const r of Object.keys(c)) {
-      if (!(r in e) || e[r] === void 0)
-        throw new Error(`Missing compulsory key: "${r}"`);
-      if (Array.isArray(c[r])) {
-        if (!Array.isArray(e[r])) throw new TypeError(`${r} must be an Array`);
-      } else if (typeof e[r] != typeof c[r])
-        throw new TypeError(`${r} must be of type ${typeof c[r]}`);
-    }
-    if (!e.targetHtmlId.trim()) throw new TypeError("targetHtmlId must be a non-empty string");
-    return !0;
-  }
-  if (typeof e.type != "string" || !S.includes(e.type))
-    throw new Error(`type must be one of: ${S.join(", ")}`);
-  if (!Array.isArray(e.data)) throw new TypeError("data must be an Array");
-  if (e.showLog !== void 0 && typeof e.showLog != "boolean")
-    throw new TypeError("showLog must be a boolean");
-  if (F.includes(e.type)) {
-    if (!Array.isArray(e.columns)) throw new TypeError("columns must be an array for table rendering");
-    for (let r = 0; r < e.columns.length; r++) {
-      const n = e.columns[r];
-      if (!n || typeof n != "object" || Array.isArray(n)) throw new TypeError(`columns[${r}] must be an object`);
-      if (typeof n.columnName != "string" || !n.columnName.trim())
-        throw new TypeError(`columns[${r}].columnName must be a non-empty string`);
-    }
-    for (let r = 0; r < e.data.length; r++) {
-      const n = e.data[r];
-      if (!n || typeof n != "object" || Array.isArray(n)) throw new TypeError(`data[${r}] must be an object`);
-    }
-    if (e.columns.length && e.data.length) {
-      const r = e.columns.map((u) => u.columnName), n = Object.keys(e.data[0]);
-      if (!r.some((u) => n.includes(u)))
-        throw new Error(`Data alignment error: None of the columns [${r.join(", ")}] match any keys in data rows [${n.join(", ")}]`);
-    }
-  }
-  if (e.type === "form") {
-    if (!Array.isArray(e.columns))
-      throw new TypeError("columns must be an array for form rendering");
-    for (let r = 0; r < e.columns.length; r++) {
-      const n = e.columns[r];
-      if (!n || typeof n != "object" || Array.isArray(n))
-        throw new TypeError(`columns[${r}] must be an object`);
-      if (typeof n.columnName != "string" || !n.columnName.trim())
-        throw new TypeError(`columns[${r}].columnName must be a non-empty string`);
-    }
-  }
-  return !0;
-}
-const W = {
+  return j({ inConfig: e }), R({ inConfig: e }), F({ inConfig: e }), M({ inConfig: e }), P({ inConfig: e }), H({ inConfig: e }), W({ inConfig: e }), !0;
+};
+T.getSpec = L;
+T.configSpec = g;
+const q = {
   version: "1.2.0",
   name: "json-renderers-build-form"
-}, C = (i) => {
-  const a = i;
-  if (typeof globalThis > "u" || !a) return;
+}, J = (n) => {
+  const s = n;
+  if (typeof globalThis > "u" || !s) return;
   globalThis.ks ?? (globalThis.ks = {});
-  const e = typeof a == "function" ? a : a.render;
+  const e = typeof s == "function" ? s : s.render;
   globalThis.ks.jsonRenderersBuildForm = {
-    meta: W,
+    meta: q,
     render: e,
-    ...typeof a == "object" ? a : {}
+    ...typeof s == "object" ? s : {}
   };
-}, _ = {
+}, Q = {
   tagName: "form",
   attributes: {
     class: "vstack gap-3",
     id: "appFormId"
   },
   children: []
-}, D = {
+}, U = {
   tagName: "div",
   attributes: {
     class: "mb-3"
   },
   children: []
-}, P = {
+}, X = {
   tagName: "label",
   textContent: "Label",
   attributes: {
     class: "form-label fw-semibold",
     for: "fieldId"
   }
-}, M = {
+}, Y = {
   tagName: "input",
   attributes: {
     type: "text",
@@ -112,7 +113,7 @@ const W = {
     id: "fieldId",
     name: "fieldName"
   }
-}, H = {
+}, Z = {
   tagName: "button",
   textContent: "Submit",
   attributes: {
@@ -120,87 +121,87 @@ const W = {
     class: "btn btn-primary align-self-start",
     id: "formSubmitBtnId"
   }
-}, y = {
-  form: _,
-  fieldWrapper: D,
-  label: P,
-  input: M,
-  submitButton: H
-}, k = ({ inColumn: i, inRow: a = {}, inIndex: e = 0 } = {}) => {
-  var I, $;
-  const t = i, c = a, r = e, n = (t == null ? void 0 : t.columnName) ?? `field_${r}`, u = (t == null ? void 0 : t.type) ?? "text", s = (t == null ? void 0 : t.label) ?? (t == null ? void 0 : t.title) ?? n, l = (t == null ? void 0 : t.id) ?? `form-${r}-${n.toLowerCase()}`, o = c[n] ?? (t == null ? void 0 : t.value), b = structuredClone(y.fieldWrapper), d = structuredClone(y.label);
-  if (d.textContent = s, d.attributes.for = l, u === "checkbox") {
-    b.attributes.class = "form-check mb-3";
-    const f = structuredClone(y.input);
-    return f.attributes.type = "checkbox", f.attributes.class = "form-check-input", f.attributes.id = l, f.attributes.name = n, f.attributes.value = "true", f.properties = { checked: !!(o ?? (t == null ? void 0 : t.checked) ?? !1) }, d.attributes.class = "form-check-label", b.children = [f, d], b;
+}, h = {
+  form: Q,
+  fieldWrapper: U,
+  label: X,
+  input: Y,
+  submitButton: Z
+}, C = ({ inColumn: n, inRow: s = {}, inIndex: e = 0 } = {}) => {
+  var S, v;
+  const t = n, l = s, o = e, c = (t == null ? void 0 : t.columnName) ?? `field_${o}`, d = (t == null ? void 0 : t.type) ?? "text", r = (t == null ? void 0 : t.label) ?? (t == null ? void 0 : t.title) ?? c, u = (t == null ? void 0 : t.id) ?? `form-${o}-${c.toLowerCase()}`, a = l[c] ?? (t == null ? void 0 : t.value), i = structuredClone(h.fieldWrapper), b = structuredClone(h.label);
+  if (b.textContent = r, b.attributes.for = u, d === "checkbox") {
+    i.attributes.class = "form-check mb-3";
+    const f = structuredClone(h.input);
+    return f.attributes.type = "checkbox", f.attributes.class = "form-check-input", f.attributes.id = u, f.attributes.name = c, f.attributes.value = "true", f.properties = { checked: !!(a ?? (t == null ? void 0 : t.checked) ?? !1) }, b.attributes.class = "form-check-label", i.children = [f, b], i;
   }
-  if (u === "textarea") {
+  if (d === "textarea") {
     const f = {
       tagName: "textarea",
-      textContent: o ? String(o) : "",
+      textContent: a ? String(a) : "",
       attributes: {
         class: (t == null ? void 0 : t.class) ?? "form-control",
         rows: String((t == null ? void 0 : t.rows) ?? 3),
-        id: l,
-        name: n,
+        id: u,
+        name: c,
         placeholder: (t == null ? void 0 : t.placeholder) ?? ""
       }
     };
-    return b.children = [d, f], b;
+    return i.children = [b, f], i;
   }
-  if (u === "select") {
+  if (d === "select") {
     const f = {
       tagName: "select",
       attributes: {
         class: (t == null ? void 0 : t.class) ?? "form-select",
-        id: l,
-        name: n
+        id: u,
+        name: c
       },
       children: ((t == null ? void 0 : t.options) ?? []).map((m) => {
-        const T = String(typeof m == "object" ? m.value : m), j = typeof m == "object" ? m.label ?? m.value : String(m), L = o != null && String(o) === T;
+        const k = String(typeof m == "object" ? m.value : m), $ = typeof m == "object" ? m.label ?? m.value : String(m), E = a != null && String(a) === k;
         return {
           tagName: "option",
-          textContent: j,
+          textContent: $,
           attributes: {
-            value: T,
-            ...L ? { selected: !0 } : {}
+            value: k,
+            ...E ? { selected: !0 } : {}
           }
         };
       })
     };
-    return b.children = [d, f], b;
+    return i.children = [b, f], i;
   }
-  const p = structuredClone(y.input);
-  if (p.attributes.type = u, p.attributes.id = l, p.attributes.name = n, t != null && t.placeholder && (p.attributes.placeholder = t.placeholder), t != null && t.class && (p.attributes.class = t.class), o != null && (p.attributes.value = String(o)), t != null && t.buttonText || t != null && t.button) {
+  const p = structuredClone(h.input);
+  if (p.attributes.type = d, p.attributes.id = u, p.attributes.name = c, t != null && t.placeholder && (p.attributes.placeholder = t.placeholder), t != null && t.class && (p.attributes.class = t.class), a != null && (p.attributes.value = String(a)), t != null && t.buttonText || t != null && t.button) {
     const f = {
       tagName: "button",
-      textContent: t.buttonText ?? ((I = t.button) == null ? void 0 : I.text) ?? "Action",
+      textContent: t.buttonText ?? ((S = t.button) == null ? void 0 : S.text) ?? "Action",
       attributes: {
         type: "button",
-        class: t.buttonClass ?? (($ = t.button) == null ? void 0 : $.class) ?? "btn btn-success",
-        id: t.buttonId ?? `${l}-btn`
+        class: t.buttonClass ?? ((v = t.button) == null ? void 0 : v.class) ?? "btn btn-success",
+        id: t.buttonId ?? `${u}-btn`
       }
     };
-    return b.children = [d, p, f], b;
+    return i.children = [b, p, f], i;
   }
-  return b.children = [d, p], b;
-}, h = ({ inColumns: i = [], inData: a = [], inOptions: e = {}, columns: t, data: c, options: r } = {}) => {
-  const n = Array.isArray(i) && i.length > 0 ? i : Array.isArray(t) ? t : [], u = Array.isArray(a) && a.length > 0 ? a : Array.isArray(c) ? c : [], s = e && Object.keys(e).length > 0 ? e : r ?? {}, l = u[0] ?? {}, o = structuredClone(y.form);
-  if (s != null && s.formId && (o.attributes.id = s.formId), s != null && s.className && (o.attributes.class = s.className), o.children = n.map(
-    (b, d) => k({ inColumn: b, inRow: l, inIndex: d })
-  ), (s == null ? void 0 : s.showSubmit) !== !1 && (s == null ? void 0 : s.submitButton) !== !1) {
-    const b = structuredClone(y.submitButton);
-    s != null && s.submitLabel && (b.textContent = s.submitLabel), s != null && s.submitClass && (b.attributes.class = s.submitClass), o.children.push(b);
+  return i.children = [b, p], i;
+}, y = ({ inColumns: n = [], inData: s = [], inOptions: e = {}, columns: t, data: l, options: o } = {}) => {
+  const c = Array.isArray(n) && n.length > 0 ? n : Array.isArray(t) ? t : [], d = Array.isArray(s) && s.length > 0 ? s : Array.isArray(l) ? l : [], r = e && Object.keys(e).length > 0 ? e : o ?? {}, u = d[0] ?? {}, a = structuredClone(h.form);
+  if (r != null && r.formId && (a.attributes.id = r.formId), r != null && r.className && (a.attributes.class = r.className), a.children = c.map(
+    (i, b) => C({ inColumn: i, inRow: u, inIndex: b })
+  ), (r == null ? void 0 : r.showSubmit) !== !1 && (r == null ? void 0 : r.submitButton) !== !1) {
+    const i = structuredClone(h.submitButton);
+    r != null && r.submitLabel && (i.textContent = r.submitLabel), r != null && r.submitClass && (i.attributes.class = r.submitClass), a.children.push(i);
   }
-  return o;
-}, G = {
+  return a;
+}, O = {
   tagName: "form",
   attributes: {
     class: "vstack gap-3",
     id: "inlineFormId"
   },
   children: []
-}, Y = {
+}, tt = {
   tagName: "button",
   textContent: "Submit",
   attributes: {
@@ -209,35 +210,35 @@ const W = {
     id: "formSubmitBtnId"
   }
 }, B = {
-  form: G,
-  submitButton: Y
-}, z = {
+  form: O,
+  submitButton: tt
+}, et = {
   version: "1.2.0",
   name: "json-renderers-build-input-row"
-}, K = (i) => {
-  const a = i;
-  if (typeof globalThis > "u" || !a) return;
+}, st = (n) => {
+  const s = n;
+  if (typeof globalThis > "u" || !s) return;
   globalThis.ks ?? (globalThis.ks = {});
-  const e = typeof a == "function" ? a : a.render;
+  const e = typeof s == "function" ? s : s.render;
   globalThis.ks.jsonRenderersBuildInputRow = {
-    meta: z,
+    meta: et,
     render: e,
-    ...typeof a == "object" ? a : {}
+    ...typeof s == "object" ? s : {}
   };
-}, U = "input", q = {
+}, rt = "input", nt = {
   type: "search",
   placeholder: "Search...",
   class: "form-control",
   id: "searchInputId"
-}, J = {
-  tagName: U,
-  attributes: q
-}, w = ({ inOptions: i = {}, options: a = {} } = {}) => {
-  const e = i && Object.keys(i).length > 0 ? i : a, t = structuredClone(J);
+}, at = {
+  tagName: rt,
+  attributes: nt
+}, x = ({ inOptions: n = {}, options: s = {} } = {}) => {
+  const e = n && Object.keys(n).length > 0 ? n : s, t = structuredClone(at);
   return e.placeholder && (t.attributes.placeholder = e.placeholder), e.class && (t.attributes.class = e.class), e.id && (t.attributes.id = e.id), e.name && (t.attributes.name = e.name), e.type && (t.attributes.type = e.type), e.value && (t.attributes.value = e.value), t;
-}, Q = "div", X = {
+}, it = "div", ot = {
   class: "d-flex align-items-center gap-2"
-}, Z = [
+}, ct = [
   {
     tagName: "label",
     textContent: "Search:",
@@ -255,16 +256,16 @@ const W = {
       id: "searchInputId"
     }
   }
-], O = {
-  tagName: Q,
-  attributes: X,
-  children: Z
-}, g = ({ inOptions: i = {}, options: a = {} } = {}) => {
-  const e = i && Object.keys(i).length > 0 ? i : a, t = structuredClone(O), c = t.children[0], r = t.children[1];
-  return e.label && (c.textContent = e.label), e.id && (c.attributes.for = e.id, r.attributes.id = e.id), e.placeholder && (r.attributes.placeholder = e.placeholder), e.class && (r.attributes.class = e.class), e.name && (r.attributes.name = e.name), e.type && (r.attributes.type = e.type), e.wrapperClass && (t.attributes.class = e.wrapperClass), e.labelClass && (c.attributes.class = e.labelClass), t;
-}, tt = "div", et = {
+], lt = {
+  tagName: it,
+  attributes: ot,
+  children: ct
+}, w = ({ inOptions: n = {}, options: s = {} } = {}) => {
+  const e = n && Object.keys(n).length > 0 ? n : s, t = structuredClone(lt), l = t.children[0], o = t.children[1];
+  return e.label && (l.textContent = e.label), e.id && (l.attributes.for = e.id, o.attributes.id = e.id), e.placeholder && (o.attributes.placeholder = e.placeholder), e.class && (o.attributes.class = e.class), e.name && (o.attributes.name = e.name), e.type && (o.attributes.type = e.type), e.wrapperClass && (t.attributes.class = e.wrapperClass), e.labelClass && (l.attributes.class = e.labelClass), t;
+}, ut = "div", bt = {
   class: "d-flex align-items-center gap-2"
-}, rt = [
+}, dt = [
   {
     tagName: "label",
     textContent: "Search:",
@@ -291,74 +292,74 @@ const W = {
       id: "searchButtonId"
     }
   }
-], st = {
-  tagName: tt,
-  attributes: et,
-  children: rt
-}, N = ({ inOptions: i = {}, options: a = {} } = {}) => {
-  const e = i && Object.keys(i).length > 0 ? i : a, t = structuredClone(st), c = t.children[0], r = t.children[1], n = t.children[2];
-  return e.label && (c.textContent = e.label), e.id && (c.attributes.for = e.id, r.attributes.id = e.id), e.placeholder && (r.attributes.placeholder = e.placeholder), e.class && (r.attributes.class = e.class), e.name && (r.attributes.name = e.name), e.type && (r.attributes.type = e.type), e.buttonText && (n.textContent = e.buttonText), e.buttonClass && (n.attributes.class = e.buttonClass), e.buttonId && (n.attributes.id = e.buttonId), e.wrapperClass && (t.attributes.class = e.wrapperClass), e.labelClass && (c.attributes.class = e.labelClass), t;
-}, nt = {
-  input: w,
-  inputOnly: w,
-  inputWithLabel: g,
+], ft = {
+  tagName: ut,
+  attributes: bt,
+  children: dt
+}, N = ({ inOptions: n = {}, options: s = {} } = {}) => {
+  const e = n && Object.keys(n).length > 0 ? n : s, t = structuredClone(ft), l = t.children[0], o = t.children[1], c = t.children[2];
+  return e.label && (l.textContent = e.label), e.id && (l.attributes.for = e.id, o.attributes.id = e.id), e.placeholder && (o.attributes.placeholder = e.placeholder), e.class && (o.attributes.class = e.class), e.name && (o.attributes.name = e.name), e.type && (o.attributes.type = e.type), e.buttonText && (c.textContent = e.buttonText), e.buttonClass && (c.attributes.class = e.buttonClass), e.buttonId && (c.attributes.id = e.buttonId), e.wrapperClass && (t.attributes.class = e.wrapperClass), e.labelClass && (l.attributes.class = e.labelClass), t;
+}, pt = {
+  input: x,
+  inputOnly: x,
+  inputWithLabel: w,
   inputWithLabelButton: N
-}, at = ({
-  type: i = "inputWithLabel",
-  options: a = {},
+}, mt = ({
+  type: n = "inputWithLabel",
+  options: s = {},
   inType: e,
   inOptions: t
 } = {}) => {
-  const c = e ?? i, r = t ?? a;
-  return (nt[c] || g)({ inOptions: r, options: r });
+  const l = e ?? n, o = t ?? s;
+  return (pt[l] || w)({ inOptions: o, options: o });
 };
-K({
-  render: at,
-  inputOnly: w,
-  inputWithLabel: g,
+st({
+  render: mt,
+  inputOnly: x,
+  inputWithLabel: w,
   inputWithLabelButton: N
 });
-const it = ({ inColumn: i, inRow: a = {}, inIndex: e = 0 } = {}) => {
-  var b, d;
-  const t = i, c = a, r = e, n = (t == null ? void 0 : t.columnName) ?? `field_${r}`, u = (t == null ? void 0 : t.type) ?? "text", s = (t == null ? void 0 : t.label) ?? (t == null ? void 0 : t.title) ?? n, l = (t == null ? void 0 : t.id) ?? `form-${r}-${n.toLowerCase()}`, o = c[n] ?? (t == null ? void 0 : t.value);
+const ht = ({ inColumn: n, inRow: s = {}, inIndex: e = 0 } = {}) => {
+  var i, b;
+  const t = n, l = s, o = e, c = (t == null ? void 0 : t.columnName) ?? `field_${o}`, d = (t == null ? void 0 : t.type) ?? "text", r = (t == null ? void 0 : t.label) ?? (t == null ? void 0 : t.title) ?? c, u = (t == null ? void 0 : t.id) ?? `form-${o}-${c.toLowerCase()}`, a = l[c] ?? (t == null ? void 0 : t.value);
   return t != null && t.buttonText || t != null && t.button ? N({
     inOptions: {
-      label: s,
-      type: u,
-      id: l,
-      name: n,
+      label: r,
+      type: d,
+      id: u,
+      name: c,
       placeholder: (t == null ? void 0 : t.placeholder) ?? "",
       class: (t == null ? void 0 : t.class) ?? "form-control",
-      value: o != null ? String(o) : void 0,
-      buttonText: t.buttonText ?? ((b = t.button) == null ? void 0 : b.text) ?? "Action",
-      buttonClass: t.buttonClass ?? ((d = t.button) == null ? void 0 : d.class) ?? "btn btn-outline-primary",
-      buttonId: t.buttonId ?? `${l}-btn`,
+      value: a != null ? String(a) : void 0,
+      buttonText: t.buttonText ?? ((i = t.button) == null ? void 0 : i.text) ?? "Action",
+      buttonClass: t.buttonClass ?? ((b = t.button) == null ? void 0 : b.class) ?? "btn btn-outline-primary",
+      buttonId: t.buttonId ?? `${u}-btn`,
       wrapperClass: "d-flex align-items-center gap-2 mb-3",
       labelClass: "form-label mb-0 text-nowrap fw-semibold"
     }
-  }) : g({
+  }) : w({
     inOptions: {
-      label: s,
-      type: u,
-      id: l,
-      name: n,
+      label: r,
+      type: d,
+      id: u,
+      name: c,
       placeholder: (t == null ? void 0 : t.placeholder) ?? "",
       class: (t == null ? void 0 : t.class) ?? "form-control",
-      value: o != null ? String(o) : void 0,
+      value: a != null ? String(a) : void 0,
       wrapperClass: "d-flex align-items-center gap-2 mb-3",
       labelClass: "form-label mb-0 text-nowrap fw-semibold"
     }
   });
-}, x = ({ inColumns: i = [], inData: a = [], inOptions: e = {}, columns: t, data: c, options: r } = {}) => {
-  const n = Array.isArray(i) && i.length > 0 ? i : Array.isArray(t) ? t : [], u = Array.isArray(a) && a.length > 0 ? a : Array.isArray(c) ? c : [], s = e && Object.keys(e).length > 0 ? e : r ?? {}, l = u[0] ?? {}, o = structuredClone(B.form);
-  if (s != null && s.formId && (o.attributes.id = s.formId), s != null && s.className && (o.attributes.class = s.className), o.children = n.map(
-    (b, d) => it({ inColumn: b, inRow: l, inIndex: d })
-  ), (s == null ? void 0 : s.showSubmit) !== !1 && (s == null ? void 0 : s.submitButton) !== !1) {
-    const b = structuredClone(B.submitButton);
-    s != null && s.submitLabel && (b.textContent = s.submitLabel), s != null && s.submitClass && (b.attributes.class = s.submitClass), o.children.push(b);
+}, A = ({ inColumns: n = [], inData: s = [], inOptions: e = {}, columns: t, data: l, options: o } = {}) => {
+  const c = Array.isArray(n) && n.length > 0 ? n : Array.isArray(t) ? t : [], d = Array.isArray(s) && s.length > 0 ? s : Array.isArray(l) ? l : [], r = e && Object.keys(e).length > 0 ? e : o ?? {}, u = d[0] ?? {}, a = structuredClone(B.form);
+  if (r != null && r.formId && (a.attributes.id = r.formId), r != null && r.className && (a.attributes.class = r.className), a.children = c.map(
+    (i, b) => ht({ inColumn: i, inRow: u, inIndex: b })
+  ), (r == null ? void 0 : r.showSubmit) !== !1 && (r == null ? void 0 : r.submitButton) !== !1) {
+    const i = structuredClone(B.submitButton);
+    r != null && r.submitLabel && (i.textContent = r.submitLabel), r != null && r.submitClass && (i.attributes.class = r.submitClass), a.children.push(i);
   }
-  return o;
-}, ot = {
+  return a;
+}, yt = {
   tagName: "div",
   attributes: {
     class: "d-flex align-items-center gap-2 mt-3"
@@ -383,62 +384,62 @@ const it = ({ inColumn: i, inRow: a = {}, inIndex: e = 0 } = {}) => {
       }
     }
   ]
-}, ct = {
-  buttonBar: ot
-}, A = ({ inColumns: i = [], inData: a = [], inOptions: e = {}, columns: t, data: c, options: r } = {}) => {
-  const n = Array.isArray(i) && i.length > 0 ? i : Array.isArray(t) ? t : [], u = Array.isArray(a) && a.length > 0 ? a : Array.isArray(c) ? c : [], s = e && Object.keys(e).length > 0 ? e : r ?? {}, l = h({
-    inColumns: n,
-    inData: u,
-    inOptions: { ...s, submitButton: !1, showSubmit: !1 }
-  }), o = structuredClone(ct.buttonBar);
-  return s.submitLabel && (o.children[0].textContent = s.submitLabel), s.cancelLabel && (o.children[1].textContent = s.cancelLabel), l.children.push(o), l;
-}, bt = {
-  stacked: h,
-  vertical: h,
-  inline: x,
-  horizontal: x,
-  withButtons: A,
-  buttons: A
-}, lt = ({
-  type: i = "stacked",
-  columns: a = [],
+}, gt = {
+  buttonBar: yt
+}, I = ({ inColumns: n = [], inData: s = [], inOptions: e = {}, columns: t, data: l, options: o } = {}) => {
+  const c = Array.isArray(n) && n.length > 0 ? n : Array.isArray(t) ? t : [], d = Array.isArray(s) && s.length > 0 ? s : Array.isArray(l) ? l : [], r = e && Object.keys(e).length > 0 ? e : o ?? {}, u = y({
+    inColumns: c,
+    inData: d,
+    inOptions: { ...r, submitButton: !1, showSubmit: !1 }
+  }), a = structuredClone(gt.buttonBar);
+  return r.submitLabel && (a.children[0].textContent = r.submitLabel), r.cancelLabel && (a.children[1].textContent = r.cancelLabel), u.children.push(a), u;
+}, wt = {
+  stacked: y,
+  vertical: y,
+  inline: A,
+  horizontal: A,
+  withButtons: I,
+  buttons: I
+}, xt = ({
+  type: n = "stacked",
+  columns: s = [],
   data: e = [],
   options: t = {},
-  inType: c,
-  inColumns: r,
-  inData: n,
-  inOptions: u
+  inType: l,
+  inColumns: o,
+  inData: c,
+  inOptions: d
 } = {}) => {
-  const s = c ?? i, l = r ?? a, o = n ?? e, b = u ?? t;
-  return V({
+  const r = l ?? n, u = o ?? s, a = c ?? e, i = d ?? t;
+  return T({
     inConfig: {
       type: "form",
-      columns: l,
-      data: o,
-      options: b
+      columns: u,
+      data: a,
+      options: i
     }
-  }), (bt[s] || h)({
-    inColumns: l,
-    inData: o,
-    inOptions: b
+  }), (wt[r] || y)({
+    inColumns: u,
+    inData: a,
+    inOptions: i
   });
-}, ut = h, dt = k;
-C({
-  render: lt,
-  stacked: h,
-  inline: x,
-  withButtons: A,
-  renderForm: ut,
-  renderField: dt
+}, At = y, It = C;
+J({
+  render: xt,
+  stacked: y,
+  inline: A,
+  withButtons: I,
+  renderForm: At,
+  renderField: It
 });
 export {
-  lt as default,
-  x as inline,
-  lt as render,
-  dt as renderField,
-  ut as renderForm,
-  it as renderInlineField,
-  k as renderStackedField,
-  h as stacked,
-  A as withButtons
+  xt as default,
+  A as inline,
+  xt as render,
+  It as renderField,
+  At as renderForm,
+  ht as renderInlineField,
+  C as renderStackedField,
+  y as stacked,
+  I as withButtons
 };

@@ -1,6 +1,6 @@
 {
   "name": "json-renderers-build-form",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Focused form specification builder for json-renderers, assembling form fields, rows, and action bars into JSON-to-DOM specs",
   "type": "module",
   "main": "src/index.js",
@@ -29,8 +29,8 @@
   "author": "KeshavSoft",
   "license": "MIT",
   "dependencies": {
-    "json-renderers-build-input-row": "file:../json-renderers-build-input-row",
-    "json-renderers-guard": "file:../json-renderers-guard"
+    "json-renderers-build-input-row": "^1.2.1",
+    "json-renderers-guard": "^1.3.1"
   },
   "devDependencies": {
     "vite": "^5.4.2"
