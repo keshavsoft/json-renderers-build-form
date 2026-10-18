@@ -1,15 +1,12 @@
 {
   "headers": {
     "none": {
-      "show": false,
       "actions": []
     },
     "label": {
-      "show": true,
       "actions": []
     },
     "labelWithRefresh": {
-      "show": true,
       "actions": [
         {
           "label": "Refresh",
@@ -19,7 +16,6 @@
       ]
     },
     "labelWithId": {
-      "show": true,
       "actions": []
     }
   },
@@ -47,11 +43,9 @@
   },
   "footers": {
     "none": {
-      "show": false,
       "actions": []
     },
     "saveCancel": {
-      "show": true,
       "actions": [
         {
           "label": "Save",
@@ -66,7 +60,6 @@
       ]
     },
     "edit": {
-      "show": true,
       "actions": [
         {
           "label": "Edit",

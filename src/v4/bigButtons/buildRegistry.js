@@ -1,6 +1,6 @@
 import base from "./base.json" with { type: "json" };
 import classes from "./classes.json" with { type: "json" };
-import page from "./page.json" with { type: "json" };
+import defaults from "./defaults.json" with { type: "json" };
 import recipes from "./recipes.json" with { type: "json" };
 import spec from "./spec.json" with { type: "json" };
 import { resolveArgs } from "../resolve.js";
@@ -18,21 +18,20 @@ const buildRegistry = (args = {}) => {
         throw new TypeError("bigButtons options must be an object keyed by renderer type");
     }
 
-    const suppliedOptions = optionScopes["form.bigButtons"] ?? optionScopes.bigButtons ?? {};
+    const suppliedOptions = optionScopes["form.bigButtons"] ?? {};
     if (typeof suppliedOptions !== "object" || Array.isArray(suppliedOptions)) {
         throw new TypeError('options["form.bigButtons"] must be an object');
     }
 
-    const options = { ...base.options, ...suppliedOptions };
-    const headerRecipe = selectRecipe(recipes.headers, options.header, "header");
-    const bodyRecipe = selectRecipe(recipes.bodies, options.body, "body");
-    const footerRecipe = selectRecipe(recipes.footers, options.footer, "footer");
-    const hasColumnInput = Array.isArray(args.inColumns) || Array.isArray(args.columns);
-    const sourceColumns = localColumns.length || hasColumnInput ? localColumns : base.columns;
-    const columns = sourceColumns.map(column => {
-        const originalCell = column.template?.body?.cell ?? "buildBodyCell";
-        let cell = bodyRecipe.fieldTemplates?.[originalCell] ?? originalCell;
-        if (column.buttonText) cell = bodyRecipe.buttonFieldTemplates?.[cell] ?? cell;
+    const options = { ...defaults, ...suppliedOptions };
+    const header = selectRecipe(recipes.headers, options.header, "header");
+    const body = selectRecipe(recipes.bodies, options.body, "body");
+    const footer = selectRecipe(recipes.footers, options.footer, "footer");
+
+    const columns = localColumns.map(column => {
+        const requestedCell = column.template?.body?.cell ?? (column.required ? "buildRequiredField" : "buildBodyCell");
+        let cell = body.fieldTemplates?.[requestedCell] ?? requestedCell;
+        if (column.buttonText) cell = body.buttonFieldTemplates?.[cell] ?? cell;
 
         return {
             ...column,
@@ -47,40 +46,37 @@ const buildRegistry = (args = {}) => {
         };
     });
 
-    const sourceRow = localData[0] ?? base.data[0] ?? {};
+    const sourceRecord = localData[0] ?? {};
     const row = Object.fromEntries(columns.map(column => [
         column.columnName,
-        sourceRow[column.columnName] ?? column.value ?? ""
+        sourceRecord[column.columnName] ?? column.value ?? ""
     ]));
 
-    const framework = classes.frameworks[classes.defaultFramework];
-    const classValues = Object.assign(
+    const frameworkName = options.framework ?? classes.defaultFramework;
+    const framework = classes.frameworks[frameworkName];
+    if (!framework) throw new RangeError("Unknown bigButtons framework: " + frameworkName);
+    const templateValues = Object.assign(
         {},
+        options,
         framework.base,
+        framework.headers.label,
         framework.headers[options.header],
         framework.bodies[options.body],
         framework.footers[options.footer]
     );
 
     return {
-        context: { classValues },
         data: {
             columns,
             rows: [row],
             options,
-            header: headerRecipe.show ? [{
-                title: options.title,
-                description: options.description,
-                recordId: options.recordId
-            }] : [],
-            headerActions: headerRecipe.actions,
-            body: [{}],
-            footer: footerRecipe.show ? [{}] : [],
-            footerActions: footerRecipe.actions
+            headerActions: header.actions,
+            footerActions: footer.actions
         },
-        page: structuredClone(page),
+        base: structuredClone(base),
+        context: { templateValues },
         spec
     };
 };
 
-export { buildRegistry, base, classes, page, recipes, spec };
+export { buildRegistry, base, classes, defaults, recipes, spec };

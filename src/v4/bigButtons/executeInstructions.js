@@ -1,7 +1,7 @@
 import { applyTemplate, resolvePath } from "json-transformer-funcs";
 import fromCollection from "json-transformer-funcs-one-dimension";
 import twoDimensional from "json-transformer-funcs-two-dimensions";
-import writePath from "../withButtons/writePath/index.js";
+import writePath from "./writePath.js";
 
 const functions = { applyTemplate, fromCollection, twoDimensional };
 

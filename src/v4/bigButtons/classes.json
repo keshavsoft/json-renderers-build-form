@@ -21,7 +21,10 @@
         "inlineButtonClass": "btn btn-outline-secondary text-nowrap"
       },
       "headers": {
-        "none": {},
+        "none": {
+          "headerClass": "d-none",
+          "headerActionsClass": "d-none"
+        },
         "label": {
           "headerClass": "d-flex align-items-center justify-content-between gap-3",
           "headingClass": "me-auto",
@@ -68,7 +71,9 @@
         }
       },
       "footers": {
-        "none": {},
+        "none": {
+          "footerClass": "d-none"
+        },
         "saveCancel": {},
         "edit": {}
       }

@@ -1,66 +1,14 @@
 {
   "build": [
     {
-      "narration": "Fill the form identity from its type-scoped options.",
-      "func": "applyTemplate",
-      "inputPaths": [
-        { "fileName": "data", "filePath": ["options"] },
-        { "fileName": "page" }
-      ],
-      "destinationPath": { "fileName": "page" }
-    },
-    {
-      "narration": "Build the selected header recipe, when enabled.",
-      "func": "fromCollection",
-      "inputPaths": [
-        { "fileName": "data", "filePath": ["header"] },
-        { "fileName": "spec", "filePath": ["header"] }
-      ],
-      "destinationPath": {
-        "fileName": "page",
-        "filePath": ["children"],
-        "action": "push"
-      },
-      "skipIfEmpty": true
-    },
-    {
-      "narration": "Add the form body skeleton.",
-      "func": "fromCollection",
-      "inputPaths": [
-        { "fileName": "data", "filePath": ["body"] },
-        { "fileName": "spec", "filePath": ["body"] }
-      ],
-      "destinationPath": {
-        "fileName": "page",
-        "filePath": ["children"],
-        "action": "push"
-      }
-    },
-    {
-      "narration": "Build the body fields from columns and the form record.",
-      "func": "twoDimensional",
-      "inputPaths": [
-        { "fileName": "data", "filePath": ["columns"] },
-        { "fileName": "data", "filePath": ["rows"] },
-        { "fileName": "spec" }
-      ],
-      "destinationPath": {
-        "fileName": "page",
-        "dataRole": "form-body",
-        "filePath": ["children"],
-        "action": "push"
-      },
-      "skipIfEmpty": true
-    },
-    {
-      "narration": "Build the selected header actions from the shared button template.",
+      "narration": "Build the header actions into the base header slot.",
       "func": "fromCollection",
       "inputPaths": [
         { "fileName": "data", "filePath": ["headerActions"] },
         { "fileName": "spec", "filePath": ["button"] }
       ],
       "destinationPath": {
-        "fileName": "page",
+        "fileName": "base",
         "dataRole": "header-actions",
         "filePath": ["children"],
         "action": "push"
@@ -68,28 +16,30 @@
       "skipIfEmpty": true
     },
     {
-      "narration": "Build the selected footer recipe and its action slot.",
-      "func": "fromCollection",
+      "narration": "Build the form fields into the base body slot.",
+      "func": "twoDimensional",
       "inputPaths": [
-        { "fileName": "data", "filePath": ["footer"] },
-        { "fileName": "spec", "filePath": ["footer"] }
+        { "fileName": "data", "filePath": ["columns"] },
+        { "fileName": "data", "filePath": ["rows"] },
+        { "fileName": "spec" }
       ],
       "destinationPath": {
-        "fileName": "page",
+        "fileName": "base",
+        "dataRole": "form-body",
         "filePath": ["children"],
         "action": "push"
       },
       "skipIfEmpty": true
     },
     {
-      "narration": "Build the selected footer actions from the shared button template.",
+      "narration": "Build the footer actions into the base footer slot.",
       "func": "fromCollection",
       "inputPaths": [
         { "fileName": "data", "filePath": ["footerActions"] },
         { "fileName": "spec", "filePath": ["button"] }
       ],
       "destinationPath": {
-        "fileName": "page",
+        "fileName": "base",
         "dataRole": "footer-actions",
         "filePath": ["children"],
         "action": "push"
@@ -99,13 +49,13 @@
   ],
   "style": [
     {
-      "narration": "Apply the selected class recipe to the completed form tree.",
+      "narration": "Apply the selected framework classes to the completed form.",
       "func": "applyTemplate",
       "inputPaths": [
-        { "fileName": "context", "filePath": ["classValues"] },
-        { "fileName": "page" }
+        { "fileName": "context", "filePath": ["templateValues"] },
+        { "fileName": "base" }
       ],
-      "destinationPath": { "fileName": "page" }
+      "destinationPath": { "fileName": "base" }
     }
   ]
 }
