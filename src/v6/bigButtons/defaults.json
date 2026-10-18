@@ -1,0 +1,9 @@
+{
+  "formId": "bigButtonsForm",
+  "title": "Account details",
+  "description": "Update your profile information.",
+  "recordId": "",
+  "header": "label",
+  "body": "stacked",
+  "footer": "saveCancel"
+}

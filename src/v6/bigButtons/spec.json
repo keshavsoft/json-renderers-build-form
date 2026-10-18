@@ -1,0 +1,283 @@
+{
+  "buildBodyTr": {
+    "tagName": "div",
+    "attributes": { "class": "${rowClass}" },
+    "children": []
+  },
+  "buildBodyCell": {
+    "tagName": "div",
+    "attributes": { "class": "${fieldClass}" },
+    "children": [
+      {
+        "tagName": "label",
+        "textContent": "${label}",
+        "attributes": {
+          "class": "${labelClass}",
+          "for": "${columnName}"
+        }
+      },
+      {
+        "tagName": "input",
+        "attributes": {
+          "type": "${type}",
+          "class": "${inputClass} ${inputSizeClass}",
+          "id": "${columnName}",
+          "name": "${columnName}",
+          "placeholder": "${placeholder}",
+          "value": "${rowValue}"
+        }
+      }
+    ]
+  },
+  "buildRequiredField": {
+    "tagName": "div",
+    "attributes": { "class": "${fieldClass}" },
+    "children": [
+      {
+        "tagName": "label",
+        "textContent": "${label}",
+        "attributes": {
+          "class": "${labelClass}",
+          "for": "${columnName}"
+        }
+      },
+      {
+        "tagName": "input",
+        "attributes": {
+          "type": "${type}",
+          "class": "${inputClass} ${inputSizeClass}",
+          "id": "${columnName}",
+          "name": "${columnName}",
+          "placeholder": "${placeholder}",
+          "value": "${rowValue}",
+          "required": "required"
+        }
+      }
+    ]
+  },
+  "buildTextareaField": {
+    "tagName": "div",
+    "attributes": { "class": "${fieldClass}" },
+    "children": [
+      {
+        "tagName": "label",
+        "textContent": "${label}",
+        "attributes": {
+          "class": "${labelClass}",
+          "for": "${columnName}"
+        }
+      },
+      {
+        "tagName": "textarea",
+        "textContent": "${rowValue}",
+        "attributes": {
+          "class": "${inputClass} ${inputSizeClass}",
+          "rows": "3",
+          "id": "${columnName}",
+          "name": "${columnName}",
+          "placeholder": "${placeholder}"
+        }
+      }
+    ]
+  },
+  "buildCheckboxField": {
+    "tagName": "div",
+    "attributes": { "class": "${checkboxWrapperClass} ${fieldClass}" },
+    "children": [
+      {
+        "tagName": "input",
+        "attributes": {
+          "type": "checkbox",
+          "class": "${checkboxInputClass}",
+          "id": "${columnName}",
+          "name": "${columnName}",
+          "value": "true"
+        }
+      },
+      {
+        "tagName": "label",
+        "textContent": "${label}",
+        "attributes": {
+          "class": "${checkboxLabelClass}",
+          "for": "${columnName}"
+        }
+      }
+    ]
+  },
+  "buildInlineField": {
+    "tagName": "div",
+    "attributes": { "class": "${fieldClass}" },
+    "children": [
+      {
+        "tagName": "label",
+        "textContent": "${label}",
+        "attributes": {
+          "class": "${inlineLabelClass}",
+          "for": "${columnName}"
+        }
+      },
+      {
+        "tagName": "input",
+        "attributes": {
+          "type": "${type}",
+          "class": "${inputClass} ${inputSizeClass} ${inlineInputClass}",
+          "id": "${columnName}",
+          "name": "${columnName}",
+          "placeholder": "${placeholder}",
+          "value": "${rowValue}"
+        }
+      }
+    ]
+  },
+  "buildInlineRequiredField": {
+    "tagName": "div",
+    "attributes": { "class": "${fieldClass}" },
+    "children": [
+      {
+        "tagName": "label",
+        "textContent": "${label}",
+        "attributes": {
+          "class": "${inlineLabelClass}",
+          "for": "${columnName}"
+        }
+      },
+      {
+        "tagName": "input",
+        "attributes": {
+          "type": "${type}",
+          "class": "${inputClass} ${inputSizeClass} ${inlineInputClass}",
+          "id": "${columnName}",
+          "name": "${columnName}",
+          "placeholder": "${placeholder}",
+          "value": "${rowValue}",
+          "required": "required"
+        }
+      }
+    ]
+  },
+  "buildInlineFieldWithButton": {
+    "tagName": "div",
+    "attributes": { "class": "${fieldClass}" },
+    "children": [
+      {
+        "tagName": "label",
+        "textContent": "${label}",
+        "attributes": {
+          "class": "${inlineLabelClass}",
+          "for": "${columnName}"
+        }
+      },
+      {
+        "tagName": "input",
+        "attributes": {
+          "type": "${type}",
+          "class": "${inputClass} ${inputSizeClass} ${inlineInputClass}",
+          "id": "${columnName}",
+          "name": "${columnName}",
+          "placeholder": "${placeholder}",
+          "value": "${rowValue}"
+        }
+      },
+      {
+        "tagName": "button",
+        "textContent": "${buttonText}",
+        "attributes": {
+          "type": "${buttonType}",
+          "class": "${inlineButtonClass}"
+        }
+      }
+    ]
+  },
+  "buildInlineRequiredFieldWithButton": {
+    "tagName": "div",
+    "attributes": { "class": "${fieldClass}" },
+    "children": [
+      {
+        "tagName": "label",
+        "textContent": "${label}",
+        "attributes": {
+          "class": "${inlineLabelClass}",
+          "for": "${columnName}"
+        }
+      },
+      {
+        "tagName": "input",
+        "attributes": {
+          "type": "${type}",
+          "class": "${inputClass} ${inputSizeClass} ${inlineInputClass}",
+          "id": "${columnName}",
+          "name": "${columnName}",
+          "placeholder": "${placeholder}",
+          "value": "${rowValue}",
+          "required": "required"
+        }
+      },
+      {
+        "tagName": "button",
+        "textContent": "${buttonText}",
+        "attributes": {
+          "type": "${buttonType}",
+          "class": "${inlineButtonClass}"
+        }
+      }
+    ]
+  },
+  "buildInlineTextareaField": {
+    "tagName": "div",
+    "attributes": { "class": "${fieldClass}" },
+    "children": [
+      {
+        "tagName": "label",
+        "textContent": "${label}",
+        "attributes": {
+          "class": "${inlineLabelClass}",
+          "for": "${columnName}"
+        }
+      },
+      {
+        "tagName": "textarea",
+        "textContent": "${rowValue}",
+        "attributes": {
+          "class": "${inputClass} ${inputSizeClass} ${inlineInputClass}",
+          "rows": "3",
+          "id": "${columnName}",
+          "name": "${columnName}",
+          "placeholder": "${placeholder}"
+        }
+      }
+    ]
+  },
+  "buildInlineCheckboxField": {
+    "tagName": "div",
+    "attributes": { "class": "${inlineCheckboxWrapperClass}" },
+    "children": [
+      {
+        "tagName": "input",
+        "attributes": {
+          "type": "checkbox",
+          "class": "${checkboxInputClass}",
+          "id": "${columnName}",
+          "name": "${columnName}",
+          "value": "true"
+        }
+      },
+      {
+        "tagName": "label",
+        "textContent": "${label}",
+        "attributes": {
+          "class": "${checkboxLabelClass}",
+          "for": "${columnName}"
+        }
+      }
+    ]
+  },
+  "button": {
+    "tagName": "button",
+    "textContent": "${label}",
+    "attributes": {
+      "type": "${type}",
+      "form": "${formId}",
+      "class": "${buttonClass} ${buttonSizeClass} ${buttonPaddingClass}"
+    }
+  }
+}
