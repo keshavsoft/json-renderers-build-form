@@ -238,9 +238,9 @@ const G = {
   if (!(s in a))
     throw new Error(`Row template "${s}" not found in inSpec`);
   for (let n = 0; n < e.length; n++) {
-    const i = e[n], m = ((d = (u = i.template) == null ? void 0 : u.body) == null ? void 0 : d.cell) || ((b = i.template) == null ? void 0 : b.bodyCell) || "buildBodyCell";
-    if (!(m in a))
-      throw new Error(`Cell template "${m}" for column "${i.columnName}" not found in inSpec`);
+    const i = e[n], p = ((d = (u = i.template) == null ? void 0 : u.body) == null ? void 0 : d.cell) || ((b = i.template) == null ? void 0 : b.bodyCell) || "buildBodyCell";
+    if (!(p in a))
+      throw new Error(`Cell template "${p}" for column "${i.columnName}" not found in inSpec`);
   }
   return !0;
 }, le = (e, t) => e.map((s) => {
@@ -251,8 +251,8 @@ const G = {
   var b, n, i;
   re(e, t, a);
   const s = e, r = t, o = a, l = ((i = (n = (b = s[0]) == null ? void 0 : b.template) == null ? void 0 : n.body) == null ? void 0 : i.tr) || "buildBodyTr", u = o[l];
-  return r.map((m) => {
-    const h = f(m, u), p = oe(s, m), $ = le(p, o);
+  return r.map((p) => {
+    const h = f(p, u), m = oe(s, p), $ = le(m, o);
     return h.children = $, h;
   });
 }, N = (e, t) => {
@@ -293,11 +293,10 @@ const G = {
   });
 }, de = (e) => {
   P(e, j.build), P(e, j.style);
-}, be = "form", pe = {
-  id: "${formId}",
-  class: "${formClass}",
-  "data-form-type": "bigButtons"
-}, me = [
+}, be = "div", me = {
+  class: "${cardClass}",
+  "data-role": "form-card"
+}, pe = [
   {
     tagName: "header",
     attributes: {
@@ -348,10 +347,18 @@ const G = {
   {
     tagName: "div",
     attributes: {
-      class: "${bodyClass}",
-      "data-role": "form-body"
+      class: "${cardBodyClass}"
     },
-    children: []
+    children: [
+      {
+        tagName: "form",
+        attributes: {
+          id: "${formId}",
+          "data-role": "form-body"
+        },
+        children: []
+      }
+    ]
   },
   {
     tagName: "footer",
@@ -372,20 +379,20 @@ const G = {
   }
 ], fe = {
   tagName: be,
-  attributes: pe,
-  children: me
+  attributes: me,
+  children: pe
 }, he = "bootstrap", ye = {
   bootstrap: {
     base: {
-      formClass: "card border-0 shadow-sm w-100 p-4 p-lg-5",
-      bodyClass: "mt-4",
+      cardClass: "card border-0 shadow-sm w-100",
+      cardBodyClass: "card-body p-4 p-lg-5",
       labelClass: "form-label fw-semibold",
       inputClass: "form-control",
       inputSizeClass: "form-control-lg",
       checkboxWrapperClass: "form-check mb-3",
       checkboxInputClass: "form-check-input",
       checkboxLabelClass: "form-check-label",
-      footerClass: "mt-4 pt-3 border-top",
+      footerClass: "card-footer bg-transparent",
       footerActionsClass: "d-flex flex-wrap justify-content-end gap-2",
       buttonSizeClass: "btn-lg",
       buttonPaddingClass: "px-4 py-2",
@@ -400,7 +407,7 @@ const G = {
         headerActionsClass: "d-none"
       },
       label: {
-        headerClass: "d-flex align-items-center justify-content-between gap-3",
+        headerClass: "card-header d-flex align-items-center justify-content-between gap-3",
         headingClass: "me-auto",
         titleClass: "h4 fw-semibold mb-1",
         descriptionClass: "text-muted mb-0",
@@ -409,7 +416,7 @@ const G = {
         headerButtonClass: "btn btn-outline-secondary text-nowrap"
       },
       labelWithRefresh: {
-        headerClass: "d-flex align-items-center justify-content-between gap-3",
+        headerClass: "card-header d-flex align-items-center justify-content-between gap-3",
         headingClass: "me-auto",
         titleClass: "h4 fw-semibold mb-1",
         descriptionClass: "text-muted mb-0",
@@ -418,7 +425,7 @@ const G = {
         headerButtonClass: "btn btn-outline-secondary text-nowrap"
       },
       labelWithId: {
-        headerClass: "d-flex align-items-center justify-content-between gap-3",
+        headerClass: "card-header d-flex align-items-center justify-content-between gap-3",
         headingClass: "me-auto",
         titleClass: "h4 fw-semibold mb-1",
         descriptionClass: "text-muted mb-0",
@@ -455,7 +462,7 @@ const G = {
 }, R = {
   defaultFramework: he,
   frameworks: ye
-}, Ce = "bigButtonsForm", $e = "Account details", we = "Update your profile information.", ge = "", Ne = "label", xe = "stacked", Ae = "saveCancel", Te = {
+}, Ce = "bigButtonsForm", $e = "Account details", we = "Update your profile information.", ge = "", Ne = "label", xe = "stacked", Ae = "saveCancel", Ie = {
   formId: Ce,
   title: $e,
   description: we,
@@ -463,7 +470,7 @@ const G = {
   header: Ne,
   body: xe,
   footer: Ae
-}, Ie = {
+}, Te = {
   none: {
     actions: []
   },
@@ -531,7 +538,7 @@ const G = {
     ]
   }
 }, w = {
-  headers: Ie,
+  headers: Te,
   bodies: Fe,
   footers: ke
 }, je = {
@@ -822,6 +829,7 @@ const G = {
   textContent: "${label}",
   attributes: {
     type: "${type}",
+    form: "${formId}",
     class: "${buttonClass} ${buttonSizeClass} ${buttonPaddingClass}"
   }
 }, De = {
@@ -852,10 +860,10 @@ const G = {
   const o = r["form.bigButtons"] ?? {};
   if (typeof o != "object" || Array.isArray(o))
     throw new TypeError('options["form.bigButtons"] must be an object');
-  const l = { ...Te, ...o }, u = g(w.headers, l.header, "header"), d = g(w.bodies, l.body, "body"), b = g(w.footers, l.footer, "footer"), n = t.map((c) => {
-    var A, T, I, F, k;
-    const x = ((T = (A = c.template) == null ? void 0 : A.body) == null ? void 0 : T.cell) ?? (c.required ? "buildRequiredField" : "buildBodyCell");
-    let y = ((I = d.fieldTemplates) == null ? void 0 : I[x]) ?? x;
+  const l = { ...Ie, ...o }, u = g(w.headers, l.header, "header"), d = g(w.bodies, l.body, "body"), b = g(w.footers, l.footer, "footer"), n = t.map((c) => {
+    var A, I, T, F, k;
+    const x = ((I = (A = c.template) == null ? void 0 : A.body) == null ? void 0 : I.cell) ?? (c.required ? "buildRequiredField" : "buildBodyCell");
+    let y = ((T = d.fieldTemplates) == null ? void 0 : T[x]) ?? x;
     return c.buttonText && (y = ((F = d.buttonFieldTemplates) == null ? void 0 : F[y]) ?? y), {
       ...c,
       label: c.label ?? c.title ?? c.columnName,
@@ -867,24 +875,24 @@ const G = {
         body: { ...(k = c.template) == null ? void 0 : k.body, cell: y }
       }
     };
-  }), i = a[0] ?? {}, m = Object.fromEntries(n.map((c) => [
+  }), i = a[0] ?? {}, p = Object.fromEntries(n.map((c) => [
     c.columnName,
     i[c.columnName] ?? c.value ?? ""
-  ])), h = l.framework ?? R.defaultFramework, p = R.frameworks[h];
-  if (!p) throw new RangeError("Unknown bigButtons framework: " + h);
+  ])), h = l.framework ?? R.defaultFramework, m = R.frameworks[h];
+  if (!m) throw new RangeError("Unknown bigButtons framework: " + h);
   const $ = Object.assign(
     {},
     l,
-    p.base,
-    p.headers.label,
-    p.headers[l.header],
-    p.bodies[l.body],
-    p.footers[l.footer]
+    m.base,
+    m.headers.label,
+    m.headers[l.header],
+    m.bodies[l.body],
+    m.footers[l.footer]
   );
   return {
     data: {
       columns: n,
-      rows: [m],
+      rows: [p],
       options: l,
       headerActions: u.actions,
       footerActions: b.actions
