@@ -1,0 +1,14 @@
+{
+  "none": { "actions": [] },
+  "saveCancel": {
+    "actions": [
+      { "label": "Save", "type": "submit", "buttonClass": "${primaryButtonClass}" },
+      { "label": "Cancel", "type": "reset", "buttonClass": "${secondaryButtonClass}" }
+    ]
+  },
+  "edit": {
+    "actions": [
+      { "label": "Edit", "type": "button", "buttonClass": "${infoButtonClass}" }
+    ]
+  }
+}

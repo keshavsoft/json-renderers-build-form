@@ -1,0 +1,10 @@
+{
+  "none": { "actions": [] },
+  "label": { "actions": [] },
+  "labelWithRefresh": {
+    "actions": [
+      { "label": "Refresh", "type": "button", "buttonClass": "${headerButtonClass}" }
+    ]
+  },
+  "labelWithId": { "actions": [] }
+}
