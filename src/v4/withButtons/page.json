@@ -1,0 +1,25 @@
+{
+  "tagName": "form",
+  "attributes": {
+    "id": "${formId}",
+    "class": "${formClass}"
+  },
+  "children": [
+    {
+      "tagName": "div",
+      "attributes": {
+        "class": "vstack gap-3",
+        "data-role": "form-fields"
+      },
+      "children": []
+    },
+    {
+      "tagName": "div",
+      "attributes": {
+        "class": "${buttonBarClass}",
+        "data-role": "form-actions"
+      },
+      "children": []
+    }
+  ]
+}

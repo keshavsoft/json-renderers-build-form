@@ -1,0 +1,77 @@
+{
+  "defaultFramework": "bootstrap",
+  "frameworks": {
+    "bootstrap": {
+      "base": {
+        "formClass": "card border-0 shadow-sm w-100 p-4 p-lg-5",
+        "bodyClass": "mt-4",
+        "labelClass": "form-label fw-semibold",
+        "inputClass": "form-control",
+        "inputSizeClass": "form-control-lg",
+        "checkboxWrapperClass": "form-check mb-3",
+        "checkboxInputClass": "form-check-input",
+        "checkboxLabelClass": "form-check-label",
+        "footerClass": "mt-4 pt-3 border-top",
+        "footerActionsClass": "d-flex flex-wrap justify-content-end gap-2",
+        "buttonSizeClass": "btn-lg",
+        "buttonPaddingClass": "px-4 py-2",
+        "primaryButtonClass": "btn btn-primary text-nowrap",
+        "secondaryButtonClass": "btn btn-outline-secondary text-nowrap",
+        "infoButtonClass": "btn btn-outline-info text-nowrap",
+        "inlineButtonClass": "btn btn-outline-secondary text-nowrap"
+      },
+      "headers": {
+        "none": {},
+        "label": {
+          "headerClass": "d-flex align-items-center justify-content-between gap-3",
+          "headingClass": "me-auto",
+          "titleClass": "h4 fw-semibold mb-1",
+          "descriptionClass": "text-muted mb-0",
+          "recordIdClass": "d-none",
+          "headerActionsClass": "d-none",
+          "headerButtonClass": "btn btn-outline-secondary text-nowrap"
+        },
+        "labelWithRefresh": {
+          "headerClass": "d-flex align-items-center justify-content-between gap-3",
+          "headingClass": "me-auto",
+          "titleClass": "h4 fw-semibold mb-1",
+          "descriptionClass": "text-muted mb-0",
+          "recordIdClass": "d-none",
+          "headerActionsClass": "d-flex align-items-center gap-2",
+          "headerButtonClass": "btn btn-outline-secondary text-nowrap"
+        },
+        "labelWithId": {
+          "headerClass": "d-flex align-items-center justify-content-between gap-3",
+          "headingClass": "me-auto",
+          "titleClass": "h4 fw-semibold mb-1",
+          "descriptionClass": "text-muted mb-0",
+          "recordIdClass": "badge text-bg-light border text-secondary",
+          "headerActionsClass": "d-none",
+          "headerButtonClass": "btn btn-outline-secondary text-nowrap"
+        }
+      },
+      "bodies": {
+        "inline": {
+          "rowClass": "vstack gap-3",
+          "fieldClass": "d-flex align-items-center gap-3",
+          "inlineLabelClass": "form-label fw-semibold mb-0 text-nowrap",
+          "inlineInputClass": "flex-grow-1",
+          "inlineCheckboxWrapperClass": "form-check d-flex align-items-center gap-2"
+        },
+        "stacked": {
+          "rowClass": "vstack gap-3",
+          "fieldClass": "w-100"
+        },
+        "threeColumns": {
+          "rowClass": "row g-3",
+          "fieldClass": "col-md-4"
+        }
+      },
+      "footers": {
+        "none": {},
+        "saveCancel": {},
+        "edit": {}
+      }
+    }
+  }
+}

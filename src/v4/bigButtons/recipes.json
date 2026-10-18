@@ -1,0 +1,79 @@
+{
+  "headers": {
+    "none": {
+      "show": false,
+      "actions": []
+    },
+    "label": {
+      "show": true,
+      "actions": []
+    },
+    "labelWithRefresh": {
+      "show": true,
+      "actions": [
+        {
+          "label": "Refresh",
+          "type": "button",
+          "buttonClass": "${headerButtonClass}"
+        }
+      ]
+    },
+    "labelWithId": {
+      "show": true,
+      "actions": []
+    }
+  },
+  "bodies": {
+    "inline": {
+      "fieldTemplates": {
+        "buildBodyCell": "buildInlineField",
+        "buildRequiredField": "buildInlineRequiredField",
+        "buildTextareaField": "buildInlineTextareaField",
+        "buildCheckboxField": "buildInlineCheckboxField"
+      },
+      "buttonFieldTemplates": {
+        "buildInlineField": "buildInlineFieldWithButton",
+        "buildInlineRequiredField": "buildInlineRequiredFieldWithButton"
+      }
+    },
+    "stacked": {
+      "fieldTemplates": {},
+      "buttonFieldTemplates": {}
+    },
+    "threeColumns": {
+      "fieldTemplates": {},
+      "buttonFieldTemplates": {}
+    }
+  },
+  "footers": {
+    "none": {
+      "show": false,
+      "actions": []
+    },
+    "saveCancel": {
+      "show": true,
+      "actions": [
+        {
+          "label": "Save",
+          "type": "submit",
+          "buttonClass": "${primaryButtonClass}"
+        },
+        {
+          "label": "Cancel",
+          "type": "reset",
+          "buttonClass": "${secondaryButtonClass}"
+        }
+      ]
+    },
+    "edit": {
+      "show": true,
+      "actions": [
+        {
+          "label": "Edit",
+          "type": "button",
+          "buttonClass": "${infoButtonClass}"
+        }
+      ]
+    }
+  }
+}

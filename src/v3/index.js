@@ -3,6 +3,7 @@ import registerGlobal from "./register/index.js";
 import stacked, { renderStackedField } from "./stacked/index.js";
 import inline, { renderInlineField } from "./inline/index.js";
 import withButtons from "./withButtons/index.js";
+import bigButtons from "./bigButtons/index.js";
 
 const FORM_MAP = {
     stacked,
@@ -10,7 +11,9 @@ const FORM_MAP = {
     inline,
     horizontal: inline,
     withButtons,
-    buttons: withButtons
+    buttons: withButtons,
+    bigButtons,
+    "form.bigButtons": bigButtons
 };
 
 const render = (options = {}) => {

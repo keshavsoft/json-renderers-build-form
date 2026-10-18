@@ -1,0 +1,132 @@
+{
+  "buildBodyTr": {
+    "tagName": "div",
+    "attributes": {
+      "class": "vstack gap-3"
+    },
+    "children": []
+  },
+  "buildBodyCell": {
+    "tagName": "div",
+    "attributes": {
+      "class": "mb-3"
+    },
+    "children": [
+      {
+        "tagName": "label",
+        "textContent": "${label}",
+        "attributes": {
+          "class": "form-label fw-semibold",
+          "for": "${columnName}"
+        }
+      },
+      {
+        "tagName": "input",
+        "attributes": {
+          "type": "${type}",
+          "class": "form-control",
+          "id": "${columnName}",
+          "name": "${columnName}",
+          "value": "${rowValue}"
+        }
+      }
+    ]
+  },
+  "buildRequiredField": {
+    "tagName": "div",
+    "attributes": {
+      "class": "mb-3"
+    },
+    "children": [
+      {
+        "tagName": "label",
+        "textContent": "${label}",
+        "attributes": {
+          "class": "form-label fw-semibold",
+          "for": "${columnName}"
+        }
+      },
+      {
+        "tagName": "input",
+        "attributes": {
+          "type": "${type}",
+          "class": "form-control",
+          "id": "${columnName}",
+          "name": "${columnName}",
+          "value": "${rowValue}",
+          "required": "required"
+        }
+      }
+    ]
+  },
+  "buildTextareaField": {
+    "tagName": "div",
+    "attributes": {
+      "class": "mb-3"
+    },
+    "children": [
+      {
+        "tagName": "label",
+        "textContent": "${label}",
+        "attributes": {
+          "class": "form-label fw-semibold",
+          "for": "${columnName}"
+        }
+      },
+      {
+        "tagName": "textarea",
+        "textContent": "${rowValue}",
+        "attributes": {
+          "class": "form-control",
+          "id": "${columnName}",
+          "name": "${columnName}",
+          "rows": "3"
+        }
+      }
+    ]
+  },
+  "buildCheckboxField": {
+    "tagName": "div",
+    "attributes": {
+      "class": "form-check mb-3"
+    },
+    "children": [
+      {
+        "tagName": "input",
+        "attributes": {
+          "type": "checkbox",
+          "class": "form-check-input",
+          "id": "${columnName}",
+          "name": "${columnName}",
+          "value": "true"
+        }
+      },
+      {
+        "tagName": "label",
+        "textContent": "${label}",
+        "attributes": {
+          "class": "form-check-label",
+          "for": "${columnName}"
+        }
+      }
+    ]
+  },
+  "buildSubmitButton": {
+    "tagName": "button",
+    "textContent": "${submitLabel}",
+    "attributes": {
+      "type": "submit",
+      "class": "${submitClass}",
+      "id": "submitBtnId"
+    }
+  },
+  "buildCancelButton": {
+    "tagName": "button",
+    "textContent": "${cancelLabel}",
+    "attributes": {
+      "type": "reset",
+      "class": "${cancelClass}",
+      "id": "cancelBtnId"
+    }
+  }
+}

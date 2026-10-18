@@ -1,0 +1,40 @@
+{
+  "columns": [
+    {
+      "columnName": "Name",
+      "label": "Full name",
+      "type": "text",
+      "placeholder": "Enter your name",
+      "template": { "body": { "cell": "buildRequiredField" } }
+    },
+    {
+      "columnName": "Email",
+      "label": "Email address",
+      "type": "email",
+      "placeholder": "name@example.com",
+      "template": { "body": { "cell": "buildRequiredField" } }
+    },
+    {
+      "columnName": "Phone",
+      "label": "Phone number",
+      "type": "tel",
+      "placeholder": "Enter your phone number"
+    }
+  ],
+  "data": [
+    {
+      "Name": "",
+      "Email": "",
+      "Phone": ""
+    }
+  ],
+  "options": {
+    "formId": "bigButtonsForm",
+    "title": "Account details",
+    "description": "Update your profile information.",
+    "recordId": "",
+    "header": "label",
+    "body": "stacked",
+    "footer": "saveCancel"
+  }
+}

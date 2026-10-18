@@ -1,0 +1,9 @@
+{
+  "tagName": "form",
+  "attributes": {
+    "id": "${formId}",
+    "class": "${formClass}",
+    "data-form-type": "bigButtons"
+  },
+  "children": []
+}

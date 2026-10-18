@@ -1,0 +1,18 @@
+[
+  {
+    "narration": "Build each row's form fields from the column schema and row data.",
+    "func": "twoDimensional",
+    "inputPaths": [
+      { "fileName": "data", "filePath": ["columns"] },
+      { "fileName": "data", "filePath": ["rows"] },
+      { "fileName": "spec" }
+    ],
+    "destinationPath": {
+      "fileName": "page",
+      "dataRole": "form-fields",
+      "filePath": ["children"],
+      "action": "push"
+    },
+    "skipIfEmpty": true
+  }
+]

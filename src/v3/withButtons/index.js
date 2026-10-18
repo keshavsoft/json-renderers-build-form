@@ -1,25 +1,57 @@
+import { applyTemplate, resolvePath } from "json-transformer-funcs";
+import fromCollection from "json-transformer-funcs-one-dimension";
+import twoDimensional from "json-transformer-funcs-two-dimensions";
+
 import spec from "./spec.json" with { type: "json" };
-import stacked from "../stacked/index.js";
+import page from "./page.json" with { type: "json" };
+import singleInstructions from "./instructions/single.json" with { type: "json" };
+import twoDimensionalInstructions from "./instructions/double.json" with { type: "json" };
 
-const withButtons = ({ inColumns = [], inData = [], inOptions = {}, columns, data, options } = {}) => {
-    const localColumns = Array.isArray(inColumns) && inColumns.length > 0 ? inColumns : (Array.isArray(columns) ? columns : []);
-    const localData = Array.isArray(inData) && inData.length > 0 ? inData : (Array.isArray(data) ? data : []);
-    const localOptions = inOptions && Object.keys(inOptions).length > 0 ? inOptions : (options ?? {});
+import { resolveArgs } from "../resolve.js";
+import writePath from "./writePath/index.js";
 
-    const form = stacked({
-        inColumns: localColumns,
-        inData: localData,
-        inOptions: { ...localOptions, submitButton: false, showSubmit: false }
+const functions = { applyTemplate, fromCollection, twoDimensional };
+
+const runInstructions = (registry, instructions) => {
+    instructions.forEach(instruction => {
+        const inputs = instruction.inputPaths.map(path => resolvePath(registry, path));
+        const hasEmptyInput = instruction.skipIfEmpty && inputs.some(input => Array.isArray(input) && input.length === 0);
+
+        if (hasEmptyInput) return;
+
+        const result = functions[instruction.func](...inputs);
+        writePath(registry, instruction.destinationPath, result);
     });
-
-    const buttonBar = structuredClone(spec.buttonBar);
-    if (localOptions.submitLabel) buttonBar.children[0].textContent = localOptions.submitLabel;
-    if (localOptions.cancelLabel) buttonBar.children[1].textContent = localOptions.cancelLabel;
-
-    form.children.push(buttonBar);
-    return form;
 };
 
+const withButtons = (args = {}) => {
+    const { localColumns, localData, localOptions } = resolveArgs(args);
+    const options = {
+        formId: "formWithButtonsId",
+        formClass: "vstack gap-3",
+        buttonBarClass: "d-flex align-items-center justify-content-end gap-2 mt-4 pt-3 border-top",
+        submitLabel: "Submit",
+        cancelLabel: "Cancel",
+        submitClass: "btn btn-primary",
+        cancelClass: "btn btn-outline-secondary",
+        ...localOptions
+    };
+    const registry = {
+        data: {
+            columns: localColumns,
+            rows: localData.length > 0 ? [localData[0]] : [{}],
+            options,
+            optionsRows: [options]
+        },
+        page: structuredClone(page),
+        spec
+    };
+
+    runInstructions(registry, singleInstructions);
+    runInstructions(registry, twoDimensionalInstructions);
+
+    return registry.page;
+};
 
 export { spec, withButtons };
 export default withButtons;

@@ -10,6 +10,7 @@ Powered by [`json-renderers-build-input-row`](https://github.com/keshavsoft/json
 - **Powered by `input-row`**: Directly leverages `inputWithLabel` and `inputWithLabelButton` for all standard inputs.
 - **Layouts**: Vertical stacked forms (`layout: "vertical"`) and inline filter forms (`layout: "inline"`).
 - **Action Buttons**: Custom submit button text and optional field-level action buttons (e.g. search, verify, apply).
+- **Big buttons form**: Predefined header, body, and footer recipes selected through type-scoped options.
 
 ## Installation
 
@@ -39,3 +40,24 @@ const spec = render({
   }
 });
 ```
+
+### Big buttons form
+
+Set `type: "form.bigButtons"` to build a form from its header, body, and footer recipes. Keep form-specific choices under the matching type key in `options`, so they remain scoped when forms and tables share a renderer configuration:
+
+```js
+render({
+  type: "form.bigButtons",
+  columns,
+  data,
+  options: {
+    "form.bigButtons": {
+      header: "labelWithRefresh",
+      body: "stacked",
+      footer: "saveCancel"
+    }
+  }
+});
+```
+
+Available headers are `none`, `label`, `labelWithRefresh`, and `labelWithId`. Bodies are `inline`, `stacked`, and `threeColumns`. Footers are `none`, `saveCancel`, and `edit`. The button definitions and Bootstrap classes come from the internal JSON recipes; callers only choose the recipes and provide their form data.

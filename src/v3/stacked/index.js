@@ -24,6 +24,7 @@ const renderStackedField = ({ inColumn, inRow = {}, inIndex = 0 } = {}) => {
         input.attributes.id = id;
         input.attributes.name = name;
         input.attributes.value = "true";
+        if (localColumn?.required) input.attributes.required = true;
         input.properties = { checked: Boolean(value ?? localColumn?.checked ?? false) };
         label.attributes.class = "form-check-label";
         wrapper.children = [input, label];
@@ -39,7 +40,8 @@ const renderStackedField = ({ inColumn, inRow = {}, inIndex = 0 } = {}) => {
                 rows: String(localColumn?.rows ?? 3),
                 id,
                 name,
-                placeholder: localColumn?.placeholder ?? ""
+                placeholder: localColumn?.placeholder ?? "",
+                ...(localColumn?.required ? { required: true } : {})
             }
         };
         wrapper.children = [label, textarea];
@@ -52,7 +54,8 @@ const renderStackedField = ({ inColumn, inRow = {}, inIndex = 0 } = {}) => {
             attributes: {
                 class: localColumn?.class ?? "form-select",
                 id,
-                name
+                name,
+                ...(localColumn?.required ? { required: true } : {})
             },
             children: (localColumn?.options ?? []).map(opt => {
                 const optVal = typeof opt === "object" ? String(opt.value) : String(opt);
@@ -76,6 +79,7 @@ const renderStackedField = ({ inColumn, inRow = {}, inIndex = 0 } = {}) => {
     input.attributes.type = type;
     input.attributes.id = id;
     input.attributes.name = name;
+    if (localColumn?.required) input.attributes.required = true;
     if (localColumn?.placeholder) input.attributes.placeholder = localColumn.placeholder;
     if (localColumn?.class) input.attributes.class = localColumn.class;
     if (value != null) input.attributes.value = String(value);
