@@ -1,0 +1,11 @@
+{
+  "button": {
+    "tagName": "button",
+    "textContent": "${label}",
+    "attributes": {
+      "type": "${type}",
+      "form": "${formId}",
+      "class": "${buttonClass} ${buttonSizeClass} ${buttonPaddingClass}"
+    }
+  }
+}

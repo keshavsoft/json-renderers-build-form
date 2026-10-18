@@ -1,0 +1,5 @@
+{
+  "destinationRole": "footer-actions",
+  "source": "actions",
+  "template": "button"
+}

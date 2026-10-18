@@ -1,0 +1,28 @@
+{
+  "defaultFramework": "bootstrap",
+  "frameworks": {
+    "bootstrap": {
+      "base": {
+        "cardClass": "card border-0 shadow-sm w-100",
+        "cardBodyClass": "card-body p-4 p-lg-5",
+        "labelClass": "form-label fw-semibold",
+        "inputClass": "form-control",
+        "inputSizeClass": "form-control-lg",
+        "checkboxWrapperClass": "form-check mb-3",
+        "checkboxInputClass": "form-check-input",
+        "checkboxLabelClass": "form-check-label"
+      },
+      "bodies": {
+        "inline": {
+          "rowClass": "vstack gap-3",
+          "fieldClass": "d-flex align-items-center gap-3",
+          "inlineLabelClass": "form-label fw-semibold mb-0 text-nowrap",
+          "inlineInputClass": "flex-grow-1",
+          "inlineCheckboxWrapperClass": "form-check d-flex align-items-center gap-2"
+        },
+        "stacked": { "rowClass": "vstack gap-3", "fieldClass": "w-100" },
+        "threeColumns": { "rowClass": "row g-3", "fieldClass": "col-md-4" }
+      }
+    }
+  }
+}

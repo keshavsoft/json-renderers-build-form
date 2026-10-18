@@ -1,0 +1,5 @@
+{
+  "destinationRole": "header-actions",
+  "source": "actions",
+  "template": "button"
+}

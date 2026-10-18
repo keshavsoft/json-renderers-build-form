@@ -1,0 +1,16 @@
+{
+  "inline": {
+    "fieldTemplates": {
+      "buildBodyCell": "buildInlineField",
+      "buildRequiredField": "buildInlineRequiredField",
+      "buildTextareaField": "buildInlineTextareaField",
+      "buildCheckboxField": "buildInlineCheckboxField"
+    },
+    "buttonFieldTemplates": {
+      "buildInlineField": "buildInlineFieldWithButton",
+      "buildInlineRequiredField": "buildInlineRequiredFieldWithButton"
+    }
+  },
+  "stacked": { "fieldTemplates": {}, "buttonFieldTemplates": {} },
+  "threeColumns": { "fieldTemplates": {}, "buttonFieldTemplates": {} }
+}
