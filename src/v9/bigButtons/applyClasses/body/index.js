@@ -1,7 +1,7 @@
-import classes from "./classes.json" with { type: "json" };
+import spec from "./spec.json" with { type: "json" };
 
 const applyBodyClasses = (options, frameworkName) => {
-    const framework = classes.frameworks[frameworkName];
+    const framework = spec.frameworks[frameworkName];
     if (!framework) throw new RangeError("Unknown bigButtons framework: " + frameworkName);
 
     const recipe = framework.bodies[options.body];
@@ -9,5 +9,5 @@ const applyBodyClasses = (options, frameworkName) => {
     return { ...framework.base, ...recipe };
 };
 
-export { classes };
+export { spec };
 export default applyBodyClasses;

@@ -48,7 +48,7 @@
     },
     {
       "tagName": "div",
-      "attributes": { "class": "${cardBodyClass}" },
+      "attributes": { "class": "${cardBodyClass}", "data-role": "form-content" },
       "children": [
         {
           "tagName": "form",

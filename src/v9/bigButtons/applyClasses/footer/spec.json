@@ -1,0 +1,17 @@
+{
+  "frameworks": {
+    "bootstrap": {
+      "base": {
+        "footerClass": "card-footer bg-transparent",
+        "footerActionsClass": "d-flex flex-wrap justify-content-end gap-2",
+        "buttonSizeClass": "btn-lg",
+        "buttonPaddingClass": "px-4 py-2",
+        "primaryButtonClass": "btn btn-primary text-nowrap",
+        "secondaryButtonClass": "btn btn-outline-secondary text-nowrap",
+        "infoButtonClass": "btn btn-outline-info text-nowrap",
+        "inlineButtonClass": "btn btn-outline-secondary text-nowrap"
+      },
+      "footers": { "none": { "footerClass": "d-none" }, "saveCancel": {}, "edit": {} }
+    }
+  }
+}
