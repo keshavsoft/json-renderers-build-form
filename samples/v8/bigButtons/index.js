@@ -1,4 +1,4 @@
-import render from "../../../docs/dist/v8/min.js";
+import render from "../../../docs/dist/v9/min.js";
 import { buildSpecElement } from "https://keshavsoft.github.io/json-to-tag/dist/v9/min.js";
 
 const columns = [
